@@ -3,154 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Loliootz – Catatan dari Menara</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+<title>Loliootz – Jurnal Tengah Malam</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Lora:ital@0;1&display=swap" rel="stylesheet">
 <style>
-/* ====== TEMA: ganti warna di sini ====== */
-:root, [data-tema="kabut"]{
-  --bg:#1d1829; --panel:#272038; --garis:#3d3355; --teks:#e6def2; --redup:#a89dc0;
-  --aksen:#c4a8f0; --aksen2:#e8c6e0; --font-judul:'IM Fell English',Georgia,serif;
-}
-[data-tema="ramuan"]{
-  --bg:#211a2b; --panel:#2c2238; --garis:#46385a; --teks:#eadff0; --redup:#b3a0bd;
-  --aksen:#d6a5d8; --aksen2:#a9d4c0; --font-judul:'Cormorant Garamond',Georgia,serif;
-}
-[data-tema="grimoire"]{
-  --bg:#18142a; --panel:#221c38; --garis:#4a3f6e; --teks:#ece4f5; --redup:#a79cc4;
-  --aksen:#b7a2ee; --aksen2:#e9d3a0; --font-judul:'IM Fell English',Georgia,serif;
-}
+
+:root{
+  --bg:#1c1727; --bg2:#241c36; --teks:#e4dbf0; --redup:#a396bd; --aksen:#c7aaf2; --aksen2:#ecc9dd; --garis:#3a3151; --glow1:#4a3578; --glow2:#3a2a5c;
+}:root{--judul:'IM Fell English',Georgia,serif}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--teks);font:400 1.05rem/1.75 'Lora',Georgia,serif;
-  background-image:radial-gradient(circle at 80% -10%,color-mix(in srgb,var(--aksen) 18%,transparent),transparent 45%);
-  background-attachment:fixed;transition:background-color .4s}
-h1,h2,h3{font-family:var(--font-judul);font-weight:700;line-height:1.2}
+body{background:var(--bg);color:var(--teks);font:1.08rem/1.85 'Lora',Georgia,serif;min-height:100vh;
+  background-image:
+   radial-gradient(1.5px 1.5px at 12% 18%,#fff9 50%,transparent 51%),
+   radial-gradient(1px 1px at 78% 9%,#fff8 50%,transparent 51%),
+   radial-gradient(1.5px 1.5px at 90% 52%,#fff7 50%,transparent 51%),
+   radial-gradient(1px 1px at 33% 72%,#fff8 50%,transparent 51%),
+   radial-gradient(1px 1px at 58% 88%,#fff6 50%,transparent 51%),
+   radial-gradient(ellipse at 0% 0%,var(--glow1) 0%,transparent 55%),
+   radial-gradient(ellipse at 100% 100%,var(--glow2) 0%,transparent 50%);
+  background-attachment:fixed}
 a{color:var(--aksen)}
 :focus-visible{outline:2px solid var(--aksen2);outline-offset:3px}
-.wrap{max-width:760px;margin:0 auto;padding:0 1.25rem}
 
-/* nav */
-header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);
-  backdrop-filter:blur(8px);border-bottom:1px solid var(--garis)}
-header .wrap{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;align-items:center;justify-content:space-between;padding-top:.7rem;padding-bottom:.7rem}
-nav{display:flex;gap:1.1rem;font-size:.95rem}
-nav a{text-decoration:none;color:var(--redup)}
-nav a:hover{color:var(--aksen2)}
-.tema{display:flex;gap:.4rem}
-.tema button{font:inherit;font-size:.8rem;padding:.2rem .7rem;border-radius:99px;cursor:pointer;
-  background:transparent;color:var(--redup);border:1px solid var(--garis)}
-.tema button[aria-pressed="true"]{background:var(--aksen);color:var(--bg);border-color:var(--aksen)}
+.layout{max-width:1020px;margin:0 auto;display:grid;grid-template-columns:260px 1fr;gap:4rem;padding:0 1.5rem}
+aside{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;gap:1.6rem}
+.bulan{width:84px;height:84px;border-radius:50%;background:var(--aksen2);position:relative;overflow:hidden;
+  box-shadow:0 0 50px color-mix(in srgb,var(--aksen2) 35%,transparent);animation:napas 6s ease-in-out infinite alternate}
+.bulan::after{content:"";position:absolute;width:76px;height:76px;border-radius:50%;background:var(--bg2);top:-6px;left:-22px}
+@keyframes napas{to{box-shadow:0 0 80px color-mix(in srgb,var(--aksen2) 55%,transparent)}}
+aside h1{font:400 2.7rem/1.05 var(--judul);letter-spacing:.01em}
+aside .sub{color:var(--redup);font-style:italic;font-size:.98rem;line-height:1.6}
+nav{display:flex;flex-direction:column;gap:.35rem}
+nav a{text-decoration:none;color:var(--redup);font-family:var(--judul);font-size:1.25rem;font-style:italic;transition:.2s}
+nav a::before{content:"✦ ";color:var(--garis);transition:.2s}
+nav a:hover{color:var(--aksen2);padding-left:.3rem}
+nav a:hover::before{color:var(--aksen2)}
 
-/* hero */
-.hero{padding:5rem 0 4rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
-.hero h1{font-size:clamp(2.4rem,7vw,4rem)}
-.hero p{color:var(--redup);margin-top:1rem;max-width:34ch}
-.bulan{width:130px;height:130px;border-radius:50%;background:var(--aksen2);position:relative;overflow:hidden;
-  box-shadow:0 0 60px color-mix(in srgb,var(--aksen2) 35%,transparent);animation:cahaya 6s ease-in-out infinite alternate}
-.bulan::after{content:"";position:absolute;width:118px;height:118px;border-radius:50%;background:var(--bg);top:-8px;left:-34px}
-@keyframes cahaya{to{box-shadow:0 0 90px color-mix(in srgb,var(--aksen2) 55%,transparent)}}
-@media (max-width:560px){.hero{grid-template-columns:1fr}.bulan{order:-1;width:90px;height:90px}.bulan::after{width:82px;height:82px;left:-24px;top:-6px}}
+main{padding:6rem 0 4rem}
+section{margin-bottom:6rem}
+h2{font:400 2.3rem/1.1 var(--judul);color:var(--aksen2);margin-bottom:1.6rem}
+h2::after{content:"";display:block;width:60px;height:1px;background:var(--aksen);margin-top:.9rem}
+.tentang p+p{margin-top:1.1rem}
+.tentang p:first-of-type::first-letter{font:400 4.4rem/.8 var(--judul);float:left;padding:.35rem .6rem 0 0;color:var(--aksen)}
 
-section{padding:3rem 0;border-top:1px solid var(--garis)}
-section h2{font-size:2rem;margin-bottom:1.2rem}
-section p+p{margin-top:1rem}
+/* hobi: daftar mengalir, tanpa kotak */
+.hobi{list-style:none;padding:0}
+.hobi li{display:flex;align-items:baseline;gap:.8rem;padding:.7rem 0}
+.hobi b{font:italic 400 1.55rem var(--judul);color:var(--aksen);white-space:nowrap}
+.hobi i{flex:1;border-bottom:1px dotted var(--garis);transform:translateY(-.3rem);min-width:20px}
+.hobi span{color:var(--redup);font-size:.95rem;text-align:right;max-width:20ch;line-height:1.4}
 
-/* hobi */
-.hobi{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
-.hobi div{background:var(--panel);border:1px solid var(--garis);border-radius:14px 14px 4px 14px;padding:1.1rem}
-.hobi h3{font-size:1.25rem;color:var(--aksen2);margin-bottom:.3rem}
-.hobi p{font-size:.95rem;color:var(--redup);line-height:1.6}
-
-/* artikel */
-.artikel details{background:var(--panel);border:1px solid var(--garis);border-radius:10px;margin-bottom:.8rem}
-.artikel summary{cursor:pointer;padding:1rem 1.2rem;list-style:none;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+/* artikel: daftar bernomor romawi */
+.artikel{counter-reset:n}
+.artikel details{border-bottom:1px solid var(--garis);counter-increment:n}
+.artikel summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:3rem 1fr auto;align-items:baseline;gap:.5rem;padding:1.3rem 0}
 .artikel summary::-webkit-details-marker{display:none}
-.artikel summary h3{font-size:1.3rem}
-.artikel time{font-size:.85rem;color:var(--redup);white-space:nowrap}
-.artikel details[open] summary{border-bottom:1px solid var(--garis)}
-.artikel .isi{padding:1rem 1.2rem 1.3rem;color:var(--teks)}
-.artikel summary:hover h3{color:var(--aksen)}
+.artikel summary::before{content:counter(n,upper-roman);font:italic 400 1.2rem var(--judul);color:var(--aksen)}
+.artikel h3{font:400 1.7rem/1.2 var(--judul);transition:.2s}
+.artikel summary:hover h3{color:var(--aksen2)}
+.artikel time{font-size:.82rem;color:var(--redup);font-style:italic}
+.artikel .isi{padding:0 0 1.6rem 3.5rem;color:var(--teks);opacity:.9}
 
-footer{border-top:1px solid var(--garis);padding:2.5rem 0;color:var(--redup);font-size:.95rem}
-footer ul{list-style:none;padding:0;display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:.5rem}
+footer{border-top:1px solid var(--garis);padding:2rem 0 4rem;color:var(--redup);font-style:italic}
+footer a{margin-right:1.2rem}
+
+@media (max-width:820px){
+  .layout{grid-template-columns:1fr;gap:0}
+  aside{position:static;height:auto;padding:3rem 0 1rem;gap:1.1rem}
+  nav{flex-direction:row;flex-wrap:wrap;gap:.4rem 1.2rem}
+  main{padding-top:2rem}
+  .hobi li{flex-wrap:wrap}.hobi i{display:none}.hobi span{text-align:left;max-width:none;width:100%}
+  .artikel summary{grid-template-columns:2.2rem 1fr}.artikel time{grid-column:2}
+  .artikel .isi{padding-left:2.7rem}
+}
 @media (prefers-reduced-motion:reduce){.bulan{animation:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <nav aria-label="Navigasi">
-      <a href="#tentang">Tentang</a><a href="#hobi">Hobi</a><a href="#artikel">Artikel</a><a href="#kontak">Kontak</a>
-    </nav>
-    <div class="tema" role="group" aria-label="Pilih tema">
-      <button data-pilih="kabut" aria-pressed="true">Kabut</button>
-      <button data-pilih="ramuan" aria-pressed="false">Ramuan</button>
-      <button data-pilih="grimoire" aria-pressed="false">Grimoire</button>
-    </div>
-  </div>
-</header>
-
-<main class="wrap">
-  <div class="hero">
+<div class="layout">
+  <aside>
+    <div class="bulan" role="img" aria-label="Bulan sabit"></div>
     <div>
       <h1>Loliootz</h1>
-      <p>Penulis catatan kecil, pengumpul hal-hal aneh, dan penghuni menara di tengah malam.</p>
+      <p class="sub">Catatan, hobi, dan tulisan yang lahir setelah tengah malam.</p>
     </div>
-    <div class="bulan" role="img" aria-label="Bulan sabit"></div>
-  </div>
+    <nav aria-label="Navigasi">
+      <a href="#tentang">Tentang</a>
+      <a href="#hobi">Hobi</a>
+      <a href="#artikel">Tulisan</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </aside>
 
-  <section id="tentang">
-    <h2>Tentang saya</h2>
-    <p>Halo, aku Loliootz. mahluk kecil yang suka mengeksplor banyak hal namun dikurung dalam sangkar.</p>
-    <p>Situs ini adalah buku catatan saya: tempat menyimpan hobi, pikiran, dan tulisan yang belum tentu rapi, tapi jujur.</p>
-  </section>
+  <main>
+    <section id="tentang" class="tentang">
+      <h2>Tentang</h2>
+      <p>Halo, saya [Nama]. Saya tinggal di Yogyakarta dan lebih hidup ketika hari sudah gelap: menulis, membaca, dan mencoba hal-hal kecil yang aneh. Ceritakan di sini siapa kamu dan apa yang membuatmu bersemangat.</p>
+      <p>Situs ini adalah buku catatan saya, tempat menyimpan hobi dan tulisan yang belum tentu rapi, tetapi jujur.</p>
+    </section>
 
-  <section id="hobi">
-    <h2>Hobi</h2>
-    <div class="hobi">
-      <div><h3>Membaca</h3><p>Fantasi, sastra, dan buku yang baunya seperti hujan.</p></div>
-      <div><h3>Meracik teh</h3><p>Bunga telang, rempah, dan campuran yang gagal tapi tetap diminum.</p></div>
-      <div><h3>Menulis</h3><p>Jurnal harian dan cerita pendek yang selesai separuh.</p></div>
-      <div><h3>bermain game</h3><p>aku suka bermain tapi kalau ada waktu.</p></div>
-    </div>
-  </section>
+    <section id="hobi">
+      <h2>Hobi</h2>
+      <ul class="hobi">
+        <li><b>Membaca</b><i></i><span>fantasi, sastra, buku beraroma hujan</span></li>
+        <li><b>Meracik teh</b><i></i><span>bunga telang, rempah, campuran gagal</span></li>
+        <li><b>Menulis</b><i></i><span>jurnal dan cerita yang selesai separuh</span></li>
+        <li><b>Menatap bintang</b><i></i><span>kalau langit Jogja sedang cerah</span></li>
+      </ul>
+    </section>
 
-  <section id="artikel">
-    <h2>Artikel</h2>
-    <div class="artikel">
-      <details>
-        <summary><h3>Judul artikel pertama</h3><time datetime="2026-10-29">29 Okt 2026</time></summary>
-        <div class="isi"><p>Tulis isi artikelmu di sini. Klik judul untuk membuka dan menutup tulisan. Kamu bisa menambah paragraf sebanyak yang kamu mau.</p></div>
-      </details>
-      <details>
-        <summary><h3>Judul artikel kedua</h3><time datetime="2026-10-20">20 Okt 2026</time></summary>
-        <div class="isi"><p>Salin satu blok &lt;details&gt; untuk menambah artikel baru, lalu ganti judul, tanggal, dan isinya.</p></div>
-      </details>
-    </div>
-  </section>
-</main>
+    <section id="artikel">
+      <h2>Tulisan</h2>
+      <div class="artikel">
+        <details>
+          <summary><h3>Judul tulisan pertama</h3><time>29 Okt 2026</time></summary>
+          <div class="isi"><p>Tulis isi artikelmu di sini. Klik judul untuk membuka dan menutup. Tambahkan paragraf sebanyak yang kamu mau.</p></div>
+        </details>
+        <details>
+          <summary><h3>Judul tulisan kedua</h3><time>20 Okt 2026</time></summary>
+          <div class="isi"><p>Salin satu blok &lt;details&gt; untuk menambah tulisan baru. Nomor romawinya akan menyesuaikan otomatis.</p></div>
+        </details>
+        <details>
+          <summary><h3>Judul tulisan ketiga</h3><time>11 Okt 2026</time></summary>
+          <div class="isi"><p>Isi tulisan ketiga.</p></div>
+        </details>
+      </div>
+    </section>
 
-<footer id="kontak">
-  <div class="wrap">
-    <p>Ingin menyapa? Kirim pesan lewat salah satu jalur ini.</p>
-    <ul>
-      <li><a href="mailto:email@contoh.com">Email</a></li>
-      <li><a href="#">Instagram</a></li>
-      <li><a href="#">GitHub</a></li>
-    </ul>
-  </div>
-</footer>
-
-<script>
-const root=document.documentElement, tombol=document.querySelectorAll('[data-pilih]');
-function pakai(t){
-  root.dataset.tema=t;
-  tombol.forEach(b=>b.setAttribute('aria-pressed',b.dataset.pilih===t));
-  try{localStorage.setItem('tema',t)}catch(e){}
-}
-tombol.forEach(b=>b.addEventListener('click',()=>pakai(b.dataset.pilih)));
-try{const s=localStorage.getItem('tema'); if(s) pakai(s)}catch(e){}
-</script>
+    <footer id="kontak">
+      <p style="margin-bottom:.6rem">Ingin menyapa? Kirimkan burung hantu ke:</p>
+      <a href="mailto:email@contoh.com">Email</a><a href="#">Instagram</a><a href="#">GitHub</a>
+    </footer>
+  </main>
+</div>
 </body>
 </html>
